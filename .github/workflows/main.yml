@@ -11,22 +11,22 @@ jobs:
         uses: akeyless-community/akeyless-github-action@v1.0.1
         id: fetch-secrets
         with:
-          access-id: '${{ secrets.AKEYLESS_ACCESS_ID }}'
+          access-id: '${{ secrets.ACCESS_ID }}'
           access-type: jwt
           static-secrets: |
             - name: "/github_actions/demo_static_secret"
-              output-name: "my_first_secret"
+              output-name: "fetched secret"
               key: "imp"
       - name: Use Akeyless secret
         run: >
           echo "Step Outputs"
 
-          echo "my_first_secret: ${{ steps.fetch-secrets.outputs.my_first_secret
+          echo "fetched secret: ${{ steps.fetch-secrets.outputs.fetched secret
           }}" >> secrets.txt
 
           
           echo "Environment Variables"
 
-          echo "my_first_secret: ${{ env.my_first_secret }}" >> secrets.txt
+          echo "fetched secret: ${{ env.fetched secret }}" >> secrets.txt
 
          
