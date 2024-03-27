@@ -16,7 +16,6 @@ jobs:
           static-secrets: |
             - name: "/github_actions/demo_static_secret"
               output-name: "my_first_secret"
-              key: "imp"
            
       - name: Use Akeyless secret
         run: |
