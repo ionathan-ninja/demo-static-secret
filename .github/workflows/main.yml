@@ -17,7 +17,7 @@ jobs:
             - name: "/github_actions/demo_static_secret"
               output-name: "my_first_secret"
               #key: "/ionathanKey"
-          gateway-url: "https://csm.thalescryptolabs.com/akeyless-api/"
+          #gateway-url: "https://csm.thalescryptolabs.com/akeyless-api/"
       - name: Use Akeyless secret
         run: |
             echo "Step Outputs"
