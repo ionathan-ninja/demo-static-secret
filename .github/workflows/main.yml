@@ -8,7 +8,7 @@ jobs:
       contents: read
     steps:
       - name: Fetch static secrets from Akeyless
-        uses: akeylessio/github-action@v2
+        uses: akeyless-community/akeyless-github-action@v1.0.1
         id: fetch-secrets
         with:
           access-id: '${{ secrets.ACCESS_ID }}'
