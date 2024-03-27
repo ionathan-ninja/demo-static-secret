@@ -8,11 +8,12 @@ jobs:
       contents: read
     steps:
       - name: Fetch static secrets from Akeyless
-        uses: akeyless-community/akeyless-github-action@v1.0.1
+        uses: akeylessio/github-action@v2
         id: fetch-secrets
         with:
           access-id: '${{ secrets.ACCESS_ID }}'
           access-type: jwt
+          protection-key: '${{ secrets.AKEYLESS_PROTECTION_KEY }}'
           static-secrets: |
             - name: "/github_actions/demo_static_secret"
               output-name: "my_first_secret"
