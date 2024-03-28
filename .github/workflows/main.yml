@@ -73,13 +73,36 @@ jobs:
       run: |
         echo '${{ steps.fetch-dynamic-secrets.outputs.postgres_dynamic_secret }}' | jq -r 'to_entries|map("POSTGRES_\(.key|ascii_upcase)=\(.value|tostring)")|.[]' >> $GITHUB_ENV
     # STEP 2 - You can now access each secret separately as environment variables
-    - name: Verify Vars
+    #- name: Verify Vars
+    #  run: |
+    #    echo "host: ${{ env.POSTGRES_HOST }}" >> secrets.txt
+    #    echo "port: ${{ env.POSTGRES_PORT }}" >> secrets.txt
+    #    echo "username: ${{ env.POSTGRES_USERNAME }}" >> secrets.txt
+    #    echo "password: ${{ env.POSTGRES_PASSWORD }}" >> secrets.txt
+    #    echo "db_name: ${{ env.POSTGRES_DB_NAME }}" >> secrets.txt
+    #    echo "ttl_in_minutes: ${{ env.POSTGRES_TTL_IN_MINUTES }}" >> secrets.txt 
+
+    - name: Install PostgreSQL Client
       run: |
-        echo "host: ${{ env.POSTGRES_HOST }}" >> secrets.txt
-        echo "port: ${{ env.POSTGRES_PORT }}" >> secrets.txt
-        echo "username: ${{ env.POSTGRES_USERNAME }}" >> secrets.txt
-        echo "password: ${{ env.POSTGRES_PASSWORD }}" >> secrets.txt
-        echo "db_name: ${{ env.POSTGRES_DB_NAME }}" >> secrets.txt
-        echo "ttl_in_minutes: ${{ env.POSTGRES_TTL_IN_MINUTES }}" >> secrets.txt           
+        sudo apt-get update
+        sudo apt-get install -y postgresql-client
+
+    - name: Update PostgreSQL Table
+      env:
+        DB_NAME: postgres
+        DB_HOST: ${{ env.POSTGRES_HOST }}
+        DB_PORT: ${{ env.POSTGRES_PORT }}
+        DB_USER: ${{ env.POSTGRES_USERNAME }}
+        DB_PASS: ${{ env.POSTGRES_PASSWORD }}
+      run: |
+        # The SQL command to update the table. You should replace this with your actual SQL command.
+        SQL_COMMAND="INSERT INTO public.people (First_Name, Last_Name) VALUES ('Berry', 'Tzakala');"
+
+        # Use PGPASSWORD to pass the password, then run psql to execute your SQL command
+        export PGPASSWORD=$DB_PASS
+        psql -h "$DB_HOST" -p "$DB_PORT" -d "$DB_NAME" -U "$DB_USER" -c "$SQL_COMMAND"
+
+        # Unset the PGPASSWORD after use for security reasons
+        unset PGPASSWORD
 ############################################################################################
 
