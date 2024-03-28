@@ -13,11 +13,11 @@ jobs:
         with:
           access-id: '${{ secrets.ACCESS_ID }}'
           access-type: jwt
-          protection-key: '${{ secrets.AKEYLESS_PROTECTION_KEY }}'
+          #protection-key: '${{ secrets.AKEYLESS_PROTECTION_KEY }}'
           static-secrets: |
             - name: "/github_actions/demo_static_secret"
               output-name: "my_first_secret"
-          gateway-url: "https://csm.thalescryptolabs.com/akeyless-api/"    
+          gateway-url: "https://csm.thalescryptolabs.com/akeyless-api/v2"    
       - name: Use Akeyless secret
         run: |
             echo "Step Outputs"
