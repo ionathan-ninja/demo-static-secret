@@ -61,7 +61,7 @@ jobs:
         access-type: jwt
         export-secrets-to-outputs: true
         export-secrets-to-environment: true
-        gateway-url: "https://csm.thalescryptolabs.com/akeyless-api/v2/"
+        api-url: "https://csm.thalescryptolabs.com/akeyless-api/v2/"
 
     # ***** KEY TAKEAWAY *****
     #
