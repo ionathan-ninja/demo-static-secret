@@ -45,7 +45,7 @@ on: push
 jobs:
 
   fetch_postgres_dynamic_secrets:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: Fetch Postgres Dynamic Secrets
     permissions:
       id-token: write
