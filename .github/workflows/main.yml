@@ -90,8 +90,8 @@ jobs:
     - name: Update PostgreSQL Table
       env:
         DB_NAME: postgres
-        DB_HOST: ${{ env.POSTGRES_HOST }}
-        DB_PORT: ${{ env.POSTGRES_PORT }}
+        DB_HOST: "3.139.146.196"
+        DB_PORT: "5432"
         DB_USER: ${{ env.POSTGRES_USERNAME }}
         DB_PASS: ${{ env.POSTGRES_PASSWORD }}
       run: |
